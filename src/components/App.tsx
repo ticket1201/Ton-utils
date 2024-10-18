@@ -29,7 +29,7 @@ export const App: FC = () => {
     } as SendTransactionRequest,
     validationSchema: transactionSchema,
     onSubmit: async (values) => {
-      await tonui.sendTransaction(values)
+      await tonui.sendTransaction({...values, validUntil: Math.floor(Date.now() / 1000) + values.validUntil})
     }
   })
 
